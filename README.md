@@ -10,7 +10,11 @@ This actions send a mail using the SendGrid API to the defined mails
 
 ### `mail`
 
-**Required** The mail/mails at which the mails will be send. Can be one or more
+**Required** The mail/mails at which the mails will be send. Can be one or more. For example
+```
+  mail: a.mail@mail.to,b.mail@mail.to
+``` 
+where "," can be anything as it can be defined at the splitterator.
 
 ### `from`
 
@@ -34,8 +38,10 @@ This actions send a mail using the SendGrid API to the defined mails
 
 
 ## Example usage
-
-uses: actions/sendgrid-mail-action@v1
-with:
-  sendgrid-token: 'sample'
-  mail: 'a.mail@mail.to'
+```
+- name: SendGrid Action
+  uses: mmichailidis/sendgrid-mail-action@v1.0
+  with:
+    sendgrid-token: 'sample'
+    mail: 'a.mail@mail.to'
+```

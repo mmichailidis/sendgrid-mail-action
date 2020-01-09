@@ -45718,45 +45718,37 @@ function applyAcceptHeader (res, headers) {
 
 /***/ }),
 /* 888 */
-/***/ (function(__unusedmodule, __webpack_exports__, __webpack_require__) {
+/***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(369);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(765);
-/* harmony import */ var _actions_github__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_actions_github__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _sendgrid_mail__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(813);
-/* harmony import */ var _sendgrid_mail__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_sendgrid_mail__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
+const core = __webpack_require__(369);
+const github = __webpack_require__(765);
+const sg = __webpack_require__(813);
 
 try {
-    const token = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('sendgrid-token');
-    const mail = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('mail');
-    const theFrom = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('from');
-    const theSubject = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('subject');
-    const isIndividual = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('individual');
-    const theText = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('text');
-    const splitterator = _actions_core__WEBPACK_IMPORTED_MODULE_0___default().getInput('splitterator');
+    const token = core.getInput('sendgrid-token');
+    const mail = core.getInput('mail');
+    const theFrom = core.getInput('from');
+    const theSubject = core.getInput('subject');
+    const isIndividual = (core.getInput('individual') === 'true');
+    var theText = core.getInput('text');
+    const splitterator = core.getInput('splitterator');
 
-    const event = _actions_github__WEBPACK_IMPORTED_MODULE_1___default.a.context.eventName;
-    const action = _actions_github__WEBPACK_IMPORTED_MODULE_1___default.a.context.action;
-    const issue = _actions_github__WEBPACK_IMPORTED_MODULE_1___default.a.context.issue;
+    const event = github.context.eventName;
+    const action = github.context.action;
+    const issue = github.context.issue;
 
     theText = theText.replace("$EVENT$", event)
         .replace("$ISSUE$", issue)
         .replace("$ACTION$", action);
 
-    if (token == undefined) {
+    if (token === undefined) {
         throw new Error('Undefined token');
     }
-    if (mail == undefined) {
+    if (mail === undefined) {
         throw new Error('Undefined mail');
     }
 
-    _sendgrid_mail__WEBPACK_IMPORTED_MODULE_2___default().setApiKey(token);
+    sg.setApiKey(token);
 
     const mails = mail.split(splitterator);
 
@@ -45768,14 +45760,14 @@ try {
         html: '<p>' + theText + '</p>'
     };
 
-    if (isIndividual == true) {
-        _sendgrid_mail__WEBPACK_IMPORTED_MODULE_2___default().sendMultiple(msg)
+    if (isIndividual === true) {
+        sg.sendMultiple(msg)
     } else {
-        _sendgrid_mail__WEBPACK_IMPORTED_MODULE_2___default().send(msg)
+        sg.send(msg)
     }
 
 } catch (e) {
-    _actions_core__WEBPACK_IMPORTED_MODULE_0___default().setFailed(e.message);
+    core.setFailed(e.message);
 }
 
 /***/ }),
@@ -48631,40 +48623,6 @@ exports.Auth = Auth
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ 	"use strict";
 /******/ 
-/******/ 	/* webpack/runtime/make namespace object */
-/******/ 	!function() {
-/******/ 		// define __esModule on exports
-/******/ 		__webpack_require__.r = function(exports) {
-/******/ 			if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 				Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 			}
-/******/ 			Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function getDefault() { return module['default']; } :
-/******/ 				function getModuleExports() { return module; };
-/******/ 			__webpack_require__.d(getter, 'a', getter);
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getter */
-/******/ 	!function() {
-/******/ 		// define getter function for harmony exports
-/******/ 		var hasOwnProperty = Object.prototype.hasOwnProperty;
-/******/ 		__webpack_require__.d = function(exports, name, getter) {
-/******/ 			if(!hasOwnProperty.call(exports, name)) {
-/******/ 				Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 			}
-/******/ 		};
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/node module decorator */
 /******/ 	!function() {
 /******/ 		__webpack_require__.nmd = function(module) {
