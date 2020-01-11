@@ -1,5 +1,8 @@
 name: 'SendGrid Mail Action'
 description: 'Send emails using SendGrid on actions'
+branding:
+    icon: 'message-square'
+    color: 'green'
 inputs:
     sendgrid-token:
         description: 'The token for sendgrid'
